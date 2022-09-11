@@ -1,0 +1,46 @@
+/*-- scss:defaults --*/
+
+$font-family-sans-serif: "Open Sans", sans-serif;
+$presentation-heading-color: #063970;
+$presentation-title-slide-text-align: "left";
+$link-color: #75AADB;
+$code-block-font-size: 0.8em;
+
+
+/*-- scss:rules --*/
+
+.slide-logo {
+  display: block !important;
+  position: fixed !important;
+  top: 0 !important;
+  right: 10px !important;
+  max-height: 15% !important;
+  height: 100% !important;
+  width: auto !important;
+  color: $body-color !important;
+}
+
+
+.slide-number, .reveal.has-logo .slide-number {
+  bottom: 10px !important;
+  right: 10px !important;
+  top: unset !important;
+  color: $body-color !important;
+}
+
+.reveal .code-file {
+  background-color: #ECECEC;
+  margin-bottom: 2px !important;
+}
+
+.reveal .code-file p {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 0.8em;
+  margin-left: 0.8em;
+}
+
+.reveal .code-file code {
+  color: #0F1620;
+}
+

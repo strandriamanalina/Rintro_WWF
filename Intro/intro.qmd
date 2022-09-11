@@ -1,0 +1,220 @@
+---
+title: "Introduction à R"
+author: "Randriamanalina Bevalamanana Solo Thierry"
+format: 
+  revealjs:
+    logo: logo.jpg 
+    slide-number: c
+    incremental: false
+    theme: style.scss
+    transition: fade
+    height: 900
+    width: 1600
+    fontcolor: "#262d36"
+    highlight-style: a11y
+    code-line-numbers: false
+---
+
+# Avant de commencer 
+
+## Avant de commencer
+
+-   Aller sur le site suivant : <https://rstudio.cloud/>
+-   Pour utiliser une version en ligne de RStudio avec R déjà pré installé 
+
+![](img/rstudiocloud1.png)
+
+## Avant de commencer
+
+![](img/rstudiocloud2.png)
+
+## Avant de commencer
+
+![](img/rstudiocloud3.png)
+
+## Avant de commencer
+
+![](img/rstudiocloud4.png)
+
+## Ou bien Installez R sur votre ordinateur
+
+-   Installer R : <https://cran.r-project.org/>
+-   Installer RStudio : <https://www.rstudio.com/>
+-   L'installation peut nécessiter d'avoir un accès **administrateur**
+
+![](img/project.png)
+
+## `RStudio` est un `IDE`
+
+![](img/rstudio_pane_layout.png)
+
+
+## Quelques ressources utiles
+
+- [__"R for Data Science"__](https://r4ds.had.co.nz/)  
+  --- Garrett Grolemund & Hadley Wickham
+
+- [__"Advanced R"__](https://adv-r.hadley.nz/)  
+  --- Hadley Wickham
+
+- [__"What They Forgot to Teach You About R"__](https://rstats.wtf/)  
+  --- Jenny Bryan & Jim Hester
+
+# Les fondamentaux de R
+
+## Affectation, le vecteur atomique
+
+```{r}
+#| echo: true
+age <- c(54, 25, 26, 30, 23)
+
+```
+
+- Créer un vecteur qui contient l'âge de 5 personnes en utilisant la fonction `c()` (combine)
+- **Assigner** l'âge à la variable `age`
+- A faire : Calculer l'âge moyen du groupe en utilisant la fonction `mean()`
+- Calculer l'âge médiane
+- Faire la somme des âges contenus dans le vecteur **age**
+
+## Les types de données dans R
+
+- Il y a 4 types de données dans R
+
+```{r}
+#| echo: true
+
+entier <- c(1L, 2L, 3L) #Integer
+numerique <- c(43, 7.5, 3.333333, 14, -Inf) #double (flottant)
+booleen <- c(TRUE, FALSE, T, F) #logical
+caractere <- c("Mariah", "Deborah", "Miora", "Tiana", "5") #character
+
+```
+
+
+## Conversion de type de vecteur
+
+- Un vecteur atomique n'a qu'un seul **type** *ie* tous les éléments du vecteur doivent être du même type
+- On utilisera la fonction `typeof()` ou `str()` pour connaître le type de vecteur
+
+```{r}
+#| echo: true
+
+typeof(numerique)
+typeof(caractere)
+str(entier)
+
+```
+
+## Conversion de type de vecteur
+
+- Si on mélange différents types de données dans un vecteur atomique, R va faire une **conversion** (coercion en anglais)
+- La conversion est dite **implicite** dans ce cas
+- Le principe est que R convertira le vecteur dans le type le plus général : booléen > Numérique > Caractère
+
+```{r}
+#| echo: true
+
+test1 <- c(TRUE, 34, 1, FALSE)
+str(test1)
+
+test2 <- c("Oui", "Non", 4, 5)
+str(test2)
+
+```
+
+## Conversion de type de vecteur
+
+- On peut aussi forcer R à convertir un vecteur vers un type donné en utilisant les fonctions : `as.numeric()` ou  `as.logical()` ou `as.character()`
+- Dans ce cas R montrera une notification (Warning) 
+- Certaines valeurs sont converties en `NA` (Valeur manquante) lorsqu'il n'y a pas d'équivalent dans le type de donnée (par exemple lettre convertie en chiffre)
+
+```{r}
+#| echo: true
+
+test3 <- c(1,2,4, "Oui", "Rakoto")
+as.numeric(test3)
+
+```
+
+## Attributs
+
+::: {.incremental}
+- Ce sont des *"metadonnées"*  *ie* des données à propos des données
+- Par exemple :  essayons de donner les noms correspondant aux ages que nous avons défini avec la fonction `names()`
+- Pour *montrer* le contenu d'un vecteur, il suffit de taper son nom et d'exécuter le code. Ceci est valable pour tous les objets dans R.
+:::
+
+## Attributs
+
+- Ce sont des *"metadonnées"*  *ie* des données à propos des données
+- Par exemple :  essayons de donner les noms correspondant aux ages que nous avons défini avec la fonction `names()`
+- Pour *montrer* le contenu d'un vecteur, il suffit de taper son nom et d'exécuter le code. Ceci est valable pour tous les objets dans R.
+
+```{r}
+#| echo: true
+noms <- c("Jao", "Paoly", "Koto", "Vao", "Jay") # ceci créer un vecteur de noms
+age <- c(54, 25, 26, 30, 23) # Voici le vecteur age créé un plus tôt
+names(age) <- noms # Ce code va assigner l'attribut nom au vecteur age grâce à la fonction names()
+age
+age1 <- setNames(age, noms) # Ce code fait la même chose que le code précédent
+age1
+
+```
+
+
+## Les autres types de structure de données
+
+Le vecteur atomique est la base
+
+Les principaux types de structure de données sont :
+
+
+- liste
+- data.frame
+- matrices et arrays
+
+# Avant de continuer
+
+## Installer quelques extensions essentiels
+
+-   Utiliser la fonction `install.packages("tidyverse")` pour installer l'extension `tidyverse` 
+-   Installer également le package `"here"`
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Dans la console, taper le code ci-après
+install.packages("tidyverse") #Noter l'utilisation des guillemets
+install.packages("here")
+
+
+```
+
+
+## Charger des extensions
+
+::: {.incremental}
+-   Pour charger une extension, utiliser la fonction `library()`
+-   Dans le code `source`, entrer et exécuter : `library(tidyverse)`
+-   L'extension `tidyverse` est un groupe d'extensions qui comprend :
+:::
+
+
+## Charger des extensions
+
+-   Pour charger une extension, utiliser la fonction `library()`
+-   Dans le code `source`, entrer et exécuter : `library(tidyverse)`
+-   L'extension `tidyverse` est un groupe d'extensions qui comprend :
+
+
+```{r}
+library(tidyverse)
+
+# Voici la liste des extensions compris dans tidyverse
+tidyverse_packages()
+
+
+```
+
+
