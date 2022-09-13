@@ -68,13 +68,33 @@ str(data)
 
 ```
 
-## Visualisations {.scrollable}
+## Visualisations animées {.scrollable}
 
 [![Gif créé par Pat Schloss](img/monthly_anomaly.gif)](https://riffomonas.org/code_club/2022-06-27-monthly-anomaly)
 
 ## `RStudio` est un `IDE`
 
 ![](img/rstudio_pane_layout.png)
+
+## Visualisations
+
+![](img/viz1.png)
+
+## Génération de rapports automatique
+
+Il est possible de générer des rapports de manière automatique et de les partager en ligne. Voici un exemple : <https://bcmada.netlify.app/presentations/ambatomainty>
+
+## Outil pour microservice
+
+J'ai créé un petit outil pour `BCMada` qui permet aux partenaires et aux non techniciens d'estimer le prix des matériels solaires et avoir des détails des commandes pour un village donné.
+
+<https://strandr.shinyapps.io/order_shiny/>
+
+## Tableau de bord interactif
+
+R permet d'élaborer des tableaux de bord interactifs. Voici la galerie qui montre des exemples d'applications `shiny` :
+
+<https://shiny.rstudio.com/gallery/#user-showcase>
 
 # utiliser R tout de suite ?
 
@@ -231,6 +251,7 @@ age1
 ## Sélection dans un vecteur {.scrollable}
 
 On peut sélectionner les éléments d'un vecteur avec :
+
 ```{r}
 #| echo: true
 
@@ -258,7 +279,6 @@ age[age >= 30 & age < 50]
 
 ```
 
-
 ## Les autres types de structure de données
 
 Le vecteur atomique est la base
@@ -268,12 +288,11 @@ Les principaux types de structure de données sont :
 -   liste
 -   data.frame
 -   matrices et arrays
--   Dans le cadre de cette introduction, nous allons utiliser essentiellement le
-`data.frame`
+-   Dans le cadre de cette introduction, nous allons utiliser essentiellement le `data.frame`
 
 ## Sélection dans un `data.frame` {.scrollable}
 
--   Un `data.frame` est un tableau (2 dimensions : Colonnes x Lignes) 
+-   Un `data.frame` est un tableau (2 dimensions : Colonnes x Lignes)
 -   Toutes les colonnes ont un même nombre de lignes
 -   Tous les éléments d'une colonne sont de même type
 
@@ -303,7 +322,6 @@ tableau$note # retourne la colonne avec le nom"note"
 str(tableau$note) # C'est un vecteur atomique
 
 ```
-
 
 # Introduction au traitement des données avec le `tidyverse`
 
@@ -347,10 +365,9 @@ tidyverse_packages()
 
 ```
 
-
 ## Utilisation du **pipe** `%>%` ou `|>` {.scrollable}
 
--    L'élément à gauche de `%>%` se retrouve en premier argument de la fonction à droite. 
+-   L'élément à gauche de `%>%` se retrouve en premier argument de la fonction à droite.
 -   f(x,y) s'écrit x `%>%` f(y)
 
 ```{r}
@@ -362,7 +379,7 @@ x %>% str()
 
 ```
 
-- Pourquoi ? : Pour faciliter la lecture (par les humains) surtout lorsque les fonctions sont imbriquées ou que les opérations sont longues
+-   Pourquoi ? : Pour faciliter la lecture (par les humains) surtout lorsque les fonctions sont imbriquées ou que les opérations sont longues
 
 ```{r}
 #| eval: false
@@ -378,37 +395,31 @@ transformation3(transformation2(transformation1(donnee)))
 
 ```
 
-
 ## Introduction à `dplyr`
 
 -   `dplyr` est une extension qui fait partie du `tidyverse`
 
--   Les verbes de `dplyr` pour les colonnes : `select()`, `rename()`, `mutate()`, `relocate()` 
+-   Les verbes de `dplyr` pour les colonnes : `select()`, `rename()`, `mutate()`, `relocate()`
 
 -   Les verbes de `dplyr` pour les lignes : `arrange()`, `filter()`
 
--   Les verbes de `dplyr` pour des groupes de colonnes  : `summarize()`/`summarise()`
-
+-   Les verbes de `dplyr` pour des groupes de colonnes : `summarize()`/`summarise()`
 
 ## Exercice 1 : traitement basique de données
 
 Les étapes :
 
-1. Télécharger les données
-2. Charger les données dans R
-3. Utiliser les verbes de `dplyr` pour transformer les données
-
+1.  Télécharger les données
+2.  Charger les données dans R
+3.  Utiliser les verbes de `dplyr` pour transformer les données
 
 ## Exercice 2 : créer une visualisation
 
-1. Charger les données
-2. Créer une visualisation avec `ggplot`
+1.  Charger les données
+2.  Créer une visualisation avec `ggplot`
 
 ```{r}
 
 
 
 ```
-
-
-
