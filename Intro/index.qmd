@@ -238,16 +238,20 @@ On peut sélectionner les éléments d'un vecteur avec :
 age[2] # renvoie le deuxième élément de age
 age["Paoly"] # Noter l'utilisation des guillemets
 
+
 # Il est possible de sélectionner plusieurs éléments à la fois
 age[c(1:4)] # Sélectionne les éléments de 1 à 4
 age[c("Vao", "Koto")]
 
+
 # On peut sélectionner avec des arguments de type booléen
 age[c(TRUE, FALSE, TRUE, FALSE, TRUE)]
+
 
 # Ce qui permet le genre d'opération ci-après
 age > 50 # Teste quels éléments de age sont >50 et retourne un vecteur booléen
 age[age > 50] # Utilise le vecteur booléen pour retourner les éléments TRUE
+
 
 # Il est possible de combiner plusieurs vecteurs booléens
 age[age >= 30 & age < 50]
@@ -279,15 +283,23 @@ Les principaux types de structure de données sont :
 # Créer un tableau 
 tableau <- data.frame(nom = noms, age = age, note = c(20, 17, 14, 7, 2), row.names = NULL)
 tableau
+
+
 # On peut utiliser [] pour sélectionner les éléments du tableau. Ici on a 2 dimensions
 tableau[, c(1,3)] # Sélectionne les éléments de la première et la troisième colonne
+
 tableau[c(1,2), ] # Sélectionne les deux premières ligne du tableau
+
 tableau[2] # Si on ne met pas de virgule, R assume qu'on sélectionne la colonne
+
 
 # On peut également utiliser [[]] ou $ pour retourner des éléments mais avec un format simplifié
 tableau[[2]] # Retourne les éléments de la deuxième colonne mais
+
 str(tableau[[2]]) # C'est un vecteur atomique
+
 tableau$note # retourne la colonne avec le nom"note"
+
 str(tableau$note) # C'est un vecteur atomique
 
 ```
