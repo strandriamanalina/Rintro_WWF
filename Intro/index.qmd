@@ -485,4 +485,40 @@ g_comparison
 
 
 
+country_selection3 <- gdp_tidy %>% 
+  filter(year == 2021) %>% 
+  arrange(desc(gdp_pcap)) %>% 
+  head(7) %>% 
+  select(country_code) %>% 
+  unlist()
+
+my_colors <- brewer.pal(length(country_selection3), "Dark2")
+
+gdp_tidy %>%
+  filter(country_code %in% country_selection3) %>%
+  filter(year >= 1990 & year < 2022) %>% 
+  select(country_name, year, gdp_pcap) %>%
+  mutate(year = as.Date(paste(year, 1, 1, sep = "-"))) %>%
+  group_by(country_name) %>%
+  e_charts(x = year) %>%
+  e_line(serie = gdp_pcap) %>%
+  e_tooltip(trigger = "axis") %>%
+  e_title(
+    text = "GDP Per Capita (PPP)",
+    subtext = "source : World Bank Open Data",
+    sublink = "https://data.worldbank.org/"
+  ) %>%
+  e_x_axis(year, axisPointer = list(show = TRUE)) %>%
+  e_axis_labels(x = "year", y = "") %>%
+  e_color(my_colors) %>%
+  e_grid(right = "15%") %>%
+  e_legend(
+    orient = "vertical",
+    right = "5", top = "15%",
+    selector = TRUE
+  )
+
+
+
+
 ```
