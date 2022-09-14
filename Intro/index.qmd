@@ -476,14 +476,10 @@ g_comparison
 ```
 
 
-## Exercice 3 : créer une visualisation animée avec `echarts4r`
+## Exercice 3 : créer une visualisation interactive avec `echarts4r`
 
-1.  Charger les données
-2.  Créer une visualisation avec `ggplot`
 
 ```{r}
-
-
 
 country_selection3 <- gdp_tidy %>% 
   filter(year == 2020) %>%
