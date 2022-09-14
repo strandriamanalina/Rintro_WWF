@@ -486,9 +486,10 @@ g_comparison
 
 
 country_selection3 <- gdp_tidy %>% 
-  filter(year == 2021) %>% 
-  arrange(desc(gdp_pcap)) %>% 
-  head(7) %>% 
+  filter(year == 2020) %>%
+  filter(!is.na(gdp_pcap)) %>% 
+  arrange(gdp_pcap) %>% 
+  head(10) %>% 
   select(country_code) %>% 
   unlist()
 
