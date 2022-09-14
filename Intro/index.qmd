@@ -413,7 +413,70 @@ Les étapes :
 2.  Charger les données dans R
 3.  Utiliser les verbes de `dplyr` pour transformer les données
 
-## Exercice 2 : créer une visualisation
+## Exercice 2 : créer une visualisation avec `ggplot2`
+
+1.  Charger les données
+2.  Créer une visualisation avec `ggplot`
+
+```{r}
+
+library(janitor)
+library(plotly)
+library(readxl)
+library(echarts4r)
+library(RColorBrewer)
+
+country_code <- read_excel(here::here("Intro","data", "iso_3digit_alpha_country_codes.xls"), skip = 2) %>%
+  clean_names()
+code <- country_code[["code_value"]]
+
+# import data from the worldbank
+gdp <- read_csv(here::here("Intro", "data", "GDP_PCAP_PPP.csv"), skip = 3) %>%
+  select(-c(last_col(), last_col()))
+
+gdp_tidy <- gdp %>%
+  pivot_longer(
+    cols = `1960`:`2021`,
+    names_to = "year",
+    values_to = "GDP_PCAP"
+  ) %>%
+  clean_names() %>%
+  mutate(year = as.numeric(year)) %>%
+  filter(country_code %in% code)
+
+
+# Madagascar data > Data available  = 1990 to 2020
+country_list <- gdp_tidy %>%
+  select(country_name, country_code) %>%
+  distinct()
+
+country_selection <- c("SSA", "ZAF", "BN", "BFA", "BGD", "CMR", "COD", "COG", "MDG")
+
+comparison <- gdp_tidy %>%
+  filter(country_code %in% country_selection) %>%
+  filter(year >= 1990 & year < 2022)
+
+# theme_set(theme_light())
+g_comparison <- comparison %>%
+  ggplot(aes(x = year, y = gdp_pcap, colour = country_name)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  labs(
+    title = "GDP per Capita",
+    subtitle = "In US Dollar", # Add a subtitle
+    caption = "Source: World Bank", # Add a caption
+    x = "Year"
+  ) + # Rename the title of the x-axis
+  theme_classic() + # Usa a predefined theme of the graph
+  # theme() changes further features of a graph.
+  theme(axis.title.y = element_blank())
+
+g_comparison
+
+```
+
+
+## Exercice 3 : créer une visualisation animée avec `echarts4r`
 
 1.  Charger les données
 2.  Créer une visualisation avec `ggplot`
