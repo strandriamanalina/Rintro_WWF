@@ -480,7 +480,7 @@ g_comparison
 
 
 ```{r}
-
+# Sélection du bottom 10
 country_selection3 <- gdp_tidy %>% 
   filter(year == 2020) %>%
   filter(!is.na(gdp_pcap)) %>% 
@@ -507,6 +507,7 @@ gdp_tidy %>%
   ) %>%
   e_x_axis(year, axisPointer = list(show = TRUE)) %>%
   e_axis_labels(x = "year", y = "") %>%
+  e_y_axis(formatter = e_axis_formatter("currency", currency = "USD")) %>%
   e_color(my_colors) %>%
   e_grid(right = "15%") %>%
   e_legend(
@@ -514,7 +515,6 @@ gdp_tidy %>%
     right = "5", top = "15%",
     selector = TRUE
   )
-
 
 
 
