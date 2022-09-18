@@ -1,0 +1,121 @@
+---
+title: "Traitement de données et visualisation"
+author: "Randriamanalina Bevalamanana Solo Thierry"
+format: 
+  revealjs:
+    logo: img/logo.jpg 
+    slide-number: c
+    incremental: false
+    theme: style.scss
+    transition: fade
+    height: 900
+    width: 1600
+    fontcolor: "#262d36"
+    highlight-style: a11y
+    code-line-numbers: false
+---
+
+# Introduction au Traitement de données
+
+## Tableau tidy ?
+
+```{r}
+#|  echo: true
+library(tidyverse)
+
+
+```
+
+
+
+## Transformer des données {.scrollable}
+
+
+
+
+## utilisation de `data.table`
+
+```{r}
+#|  echo: true
+# Installer et charger l'extension
+library(data.table)
+
+
+```
+
+
+
+## utilisation de `collapse`
+
+
+```{r}
+#|  echo: true
+# Installer et charger l'extension
+library(collapse)
+
+
+
+```
+
+
+
+## Formatter les dates avec `bigD`
+
+```{r}
+#|echo: true
+
+# Installer et charger l'extension "bigD"
+library(lubridate)
+library(glue)
+library(bigD)
+
+
+# Utilisation de lubridate 
+
+d <- c("25/10/1985", "09/03/1988", "01092015", "01032018")
+noms <- c("Thierry", "Vololona", "Logan", "Alexandra") 
+d_format <- dmy(d) %>%
+  fdt(format = "EEEE, dd MMMM yyyy",
+  locale = "fr")
+
+# Using glue
+famille <- function(nom, date_naissance){
+  glue("{nom} est né(e) le {date_naissance}.")
+}
+
+famille(noms, d_format)
+
+# using glue_data() and glue() inside mutate()
+tab_famille <- tibble(nom = noms, date_naissance = d_format)
+
+tab_famille %>% 
+  glue_data("{nom} est né(e) le {date_naissance}") # Permet d'utiliser les colonnes dans un tableau et sortir un vecteur
+
+tab_famille1 <- tab_famille %>% 
+  mutate(ensemble = glue("{nom} est né(e) le {date_naissance}"))
+
+tab_famille1
+
+```
+
+
+
+# Visualisation de données
+
+
+## Cartographie dans R
+
+```{r}
+
+
+```
+
+
+## Ressources
+
+-   [**"R for Data Science"**](https://r4ds.had.co.nz/)\
+    --- Garrett Grolemund & Hadley Wickham
+
+-   [**"Advanced R"**](https://adv-r.hadley.nz/)\
+    --- Hadley Wickham
+
