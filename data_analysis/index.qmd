@@ -20,44 +20,39 @@ format:
 ## Tableau tidy ?
 
 ```{r}
-#|  echo: true
-library(tidyverse)
+#|echo: true
+
+
+# Using tidyverse
+
 
 
 ```
 
-
-
 ## Transformer des données {.scrollable}
-
-
-
 
 ## utilisation de `data.table`
 
 ```{r}
-#|  echo: true
+#|echo: true
+
 # Installer et charger l'extension
-library(data.table)
+
 
 
 ```
-
-
 
 ## utilisation de `collapse`
 
-
 ```{r}
-#|  echo: true
+#|echo: true
+
 # Installer et charger l'extension
-library(collapse)
+
 
 
 
 ```
-
-
 
 ## Formatter les dates avec `bigD`
 
@@ -65,6 +60,7 @@ library(collapse)
 #|echo: true
 
 # Installer et charger l'extension "bigD"
+library(tidyverse)
 library(lubridate)
 library(glue)
 library(bigD)
@@ -86,22 +82,57 @@ famille <- function(nom, date_naissance){
 famille(noms, d_format)
 
 # using glue_data() and glue() inside mutate()
-tab_famille <- tibble(nom = noms, date_naissance = d_format)
+tab_famille <- tibble(nom = noms, date_naissance = dmy(d) %>% fdt(format = "EEEE",
+  locale = "fr"))
 
 tab_famille %>% 
   glue_data("{nom} est né(e) le {date_naissance}") # Permet d'utiliser les colonnes dans un tableau et sortir un vecteur
 
 tab_famille1 <- tab_famille %>% 
-  mutate(ensemble = glue("{nom} est né(e) le {date_naissance}"))
+  mutate(ensemble = glue("{nom} est né(e) un {date_naissance}"))
 
 tab_famille1
 
 ```
 
-
-
 # Visualisation de données
 
+## Visualisation avec `ggplot2` {.scrollable}
+
+```{r}
+#|echo: true
+library(palmerpenguins)
+
+# Le jeu de données "penguins" comprend :
+str(penguins)
+
+# Simple visualisation
+theme_set(theme_light())
+
+penguins %>%
+  ggplot(aes(x = bill_length_mm, fill = species)) +
+  geom_histogram(
+    bins = 30,
+    color = "white",
+    alpha = 0.9
+  )
+
+# Density
+penguins %>%
+  ggplot(aes(x = bill_length_mm, fill = species)) +
+  geom_density()
+
+
+# Approximation par rapport à la distribution normale
+
+penguins %>%
+  ggplot(aes(sample = bill_length_mm)) +
+  stat_qq_line(color = "#00026b") + 
+  geom_qq(color = "gray20")
+
+# hslcolorpicker
+
+```
 
 ## Cartographie dans R
 
@@ -110,7 +141,6 @@ tab_famille1
 
 ```
 
-
 ## Ressources
 
 -   [**"R for Data Science"**](https://r4ds.had.co.nz/)\
@@ -118,4 +148,3 @@ tab_famille1
 
 -   [**"Advanced R"**](https://adv-r.hadley.nz/)\
     --- Hadley Wickham
-
