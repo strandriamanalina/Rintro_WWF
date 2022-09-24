@@ -20,7 +20,6 @@ format:
 ## Tableau tidy ?
 
 ```{r}
-#|  echo: true
 library(tidyverse)
 
 
@@ -32,11 +31,13 @@ library(tidyverse)
 
 
 
+# Introduction à l'extension `data.table`
+
 
 ## utilisation de `data.table`
 
 ```{r}
-#|  echo: true
+
 # Installer et charger l'extension
 library(data.table)
 
@@ -45,11 +46,13 @@ library(data.table)
 
 
 
+# Introduction à l'extension `collapse`
+
 ## utilisation de `collapse`
 
 
 ```{r}
-#|  echo: true
+
 # Installer et charger l'extension
 library(collapse)
 
@@ -57,47 +60,76 @@ library(collapse)
 
 ```
 
+# Formatter
 
-
-## Formatter les dates avec `bigD`
+## Formater les tableaux avec `gt()`
 
 ```{r}
-#|echo: true
+#| echo: true
+
+# Installer et charger l'extension "gt"
+library(gt)
+
+
+
+
+```
+
+
+
+## Formatter les dates avec `bigD` {.scrollable}
+
+```{r}
+#| echo: true
 
 # Installer et charger l'extension "bigD"
 library(lubridate)
 library(glue)
 library(bigD)
 
-
 # Utilisation de lubridate 
-
 d <- c("25/10/1985", "09/03/1988", "01092015", "01032018")
-noms <- c("Thierry", "Vololona", "Logan", "Alexandra") 
+noms <- c("Thierry", "Vololona", "Logan", "Alexandra")
+sexe <- factor(c("M", "F", "M", "F"), c("M","F"))
 d_format <- dmy(d) %>%
   fdt(format = "EEEE, dd MMMM yyyy",
   locale = "fr")
 
-# Using glue
+# Voici le vecteur sans mise en forme
+d
+
+# Voici le vecteur mis en forme
+d_format
+
+```
+
+## Utiliser `glue()` {.scrollable}
+
+```{r}
+#| echo: true
+
+# Créer une fonction avec glue()
 famille <- function(nom, date_naissance){
   glue("{nom} est né(e) le {date_naissance}.")
 }
 
 famille(noms, d_format)
 
-# using glue_data() and glue() inside mutate()
-tab_famille <- tibble(nom = noms, date_naissance = d_format)
+# Utiliser glue() dans un tableau
+tab_famille <- tibble(nom = noms, date_naissance = d_format, sexe = sexe ) %>% 
+  mutate(designation_sexe = if_else(sexe == "M", "né", "née"))
 
+# Utiliser les colonnes dans un tableau et obtenir un vecteur en sortie avec glu_data()
 tab_famille %>% 
-  glue_data("{nom} est né(e) le {date_naissance}") # Permet d'utiliser les colonnes dans un tableau et sortir un vecteur
+  glue_data("{nom} est {designation_sexe} le {date_naissance}") 
 
+# Garder le résultat dans une colonne
 tab_famille1 <- tab_famille %>% 
-  mutate(ensemble = glue("{nom} est né(e) le {date_naissance}"))
+  mutate(ensemble = glue("{nom} est {designation_sexe} le {date_naissance}"))
 
-tab_famille1
+tab_famille1 %>% select(nom, ensemble)
 
 ```
-
 
 
 # Visualisation de données
@@ -113,9 +145,14 @@ tab_famille1
 
 ## Ressources
 
--   [**"R for Data Science"**](https://r4ds.had.co.nz/)\
+-   [**"Geocomputation with R"**](https://geocompr.robinlovelace.net/)\
     --- Garrett Grolemund & Hadley Wickham
 
 -   [**"Advanced R"**](https://adv-r.hadley.nz/)\
     --- Hadley Wickham
+
+# Modélisation dans R
+
+## Régression linéaire
+
 
