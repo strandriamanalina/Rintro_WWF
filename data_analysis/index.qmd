@@ -20,22 +20,19 @@ format:
 ## Tableau tidy ?
 
 ```{r}
-<<<<<<< HEAD
 library(tidyverse)
-=======
+
 #|echo: true
 
 
 # Using tidyverse
 
->>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
+
 
 
 ```
 
 ## Transformer des données {.scrollable}
-
-<<<<<<< HEAD
 
 
 # Introduction à l'extension `data.table`
@@ -44,33 +41,22 @@ library(tidyverse)
 ## utilisation de `data.table`
 
 ```{r}
-=======
 ## utilisation de `data.table`
-
-```{r}
-#|echo: true
->>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
-
-# Installer et charger l'extension
-
 
 
 ```
 
-<<<<<<< HEAD
+
 
 
 # Introduction à l'extension `collapse`
 
-=======
->>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
+
 ## utilisation de `collapse`
 
 ```{r}
-<<<<<<< HEAD
-=======
 #|echo: true
->>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
+
 
 # Installer et charger l'extension
 
@@ -79,26 +65,8 @@ library(tidyverse)
 
 ```
 
-<<<<<<< HEAD
+
 # Formatter
-
-## Formater les tableaux avec `gt()`
-=======
-## Formatter les dates avec `bigD`
->>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
-
-```{r}
-#| echo: true
-
-# Installer et charger l'extension "gt"
-library(gt)
-
-
-
-
-```
-
-
 
 ## Formatter les dates avec `bigD` {.scrollable}
 
@@ -139,36 +107,24 @@ famille <- function(nom, date_naissance){
 
 famille(noms, d_format)
 
-<<<<<<< HEAD
-# Utiliser glue() dans un tableau
-tab_famille <- tibble(nom = noms, date_naissance = d_format, sexe = sexe ) %>% 
-  mutate(designation_sexe = if_else(sexe == "M", "né", "née"))
-=======
 # using glue_data() and glue() inside mutate()
 tab_famille <- tibble(nom = noms, date_naissance = dmy(d) %>% fdt(format = "EEEE",
-  locale = "fr"))
->>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
+  locale = "fr")) %>% 
+   mutate(designation_sexe = if_else(sexe == "M", "né", "née"))
 
 # Utiliser les colonnes dans un tableau et obtenir un vecteur en sortie avec glu_data()
 tab_famille %>% 
-  glue_data("{nom} est {designation_sexe} le {date_naissance}") 
+  glue_data("{nom} est {designation_sexe} un {date_naissance}") 
 
 # Garder le résultat dans une colonne
 tab_famille1 <- tab_famille %>% 
-<<<<<<< HEAD
-  mutate(ensemble = glue("{nom} est {designation_sexe} le {date_naissance}"))
-=======
   mutate(ensemble = glue("{nom} est né(e) un {date_naissance}"))
->>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 
 tab_famille1 %>% select(nom, ensemble)
 
 ```
 
-<<<<<<< HEAD
 
-=======
->>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 # Visualisation de données
 
 ## Visualisation avec `ggplot2` {.scrollable}
@@ -222,12 +178,10 @@ penguins %>%
 
 -   [**"Advanced R"**](https://adv-r.hadley.nz/)\
     --- Hadley Wickham
-<<<<<<< HEAD
+
 
 # Modélisation dans R
 
 ## Régression linéaire
 
 
-=======
->>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6

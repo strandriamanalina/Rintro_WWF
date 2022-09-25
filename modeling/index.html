@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.0.38">
 
   <meta name="author" content="Randriamanalina Bevalamanana Solo Thierry">
-  <title>Traitement de données et visualisation</title>
+  <title>Modélisation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -23,70 +23,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #767676;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
-    div.sourceCode
-      { color: #545454; background-color: #fefefe; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #545454; } /* Normal */
-    code span.al { color: #7928a1; } /* Alert */
-    code span.an { color: #696969; } /* Annotation */
-    code span.at { color: #aa5d00; } /* Attribute */
-    code span.bn { color: #7928a1; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #d91e18; } /* ControlFlow */
-    code span.ch { color: #008000; } /* Char */
-    code span.cn { color: #d91e18; } /* Constant */
-    code span.co { color: #696969; } /* Comment */
-    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
-    code span.do { color: #696969; font-style: italic; } /* Documentation */
-    code span.dt { color: #7928a1; } /* DataType */
-    code span.dv { color: #7928a1; } /* DecVal */
-    code span.er { color: #7928a1; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #aa5d00; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #696969; } /* Information */
-    code span.kw { color: #d91e18; } /* Keyword */
-    code span.op { color: #007faa; } /* Operator */
-    code span.ot { color: #d91e18; } /* Other */
-    code span.pp { color: #7928a1; } /* Preprocessor */
-    code span.sc { color: #007faa; } /* SpecialChar */
-    code span.ss { color: #008000; } /* SpecialString */
-    code span.st { color: #008000; } /* String */
-    code span.va { color: #aa5d00; } /* Variable */
-    code span.vs { color: #008000; } /* VerbatimString */
-    code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -383,180 +319,47 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Traitement de données et visualisation</h1>
+  <h1 class="title">Modélisation</h1>
   <p class="author">Randriamanalina Bevalamanana Solo Thierry</p>
 </section>
 
-<section>
-<section id="introduction-au-traitement-de-données" class="title-slide slide level1 center">
-<h1>Introduction au Traitement de données</h1>
-
-</section>
-<section id="tableau-tidy" class="slide level2">
-<h2>Tableau tidy ?</h2>
-<div class="cell">
-
-</div>
-</section>
-<section id="transformer-des-données" class="slide level2 scrollable">
-<h2>Transformer des données</h2>
-</section></section>
-<section>
-<section id="introduction-à-lextension-data.table" class="title-slide slide level1 center">
-<h1>Introduction à l’extension <code>data.table</code></h1>
-
-</section>
-<section id="utilisation-de-data.table" class="slide level2">
-<h2>utilisation de <code>data.table</code></h2>
-<div class="cell">
-
-</div>
-</section></section>
-<section>
-<section id="introduction-à-lextension-collapse" class="title-slide slide level1 center">
-<h1>Introduction à l’extension <code>collapse</code></h1>
-
-</section>
-<section id="utilisation-de-collapse" class="slide level2">
-<h2>utilisation de <code>collapse</code></h2>
-<div class="cell">
-
-</div>
-</section></section>
-<section>
-<section id="formatter" class="title-slide slide level1 center">
-<h1>Formatter</h1>
-
-</section>
-<section id="formatter-les-dates-avec-bigd" class="slide level2 scrollable">
-<h2>Formatter les dates avec <code>bigD</code></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Installer et charger l'extension "bigD"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bigD)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilisation de lubridate </span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"25/10/1985"</span>, <span class="st">"09/03/1988"</span>, <span class="st">"01092015"</span>, <span class="st">"01032018"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>noms <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Thierry"</span>, <span class="st">"Vololona"</span>, <span class="st">"Logan"</span>, <span class="st">"Alexandra"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sexe <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>), <span class="fu">c</span>(<span class="st">"M"</span>,<span class="st">"F"</span>))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>d_format <span class="ot">&lt;-</span> <span class="fu">dmy</span>(d) <span class="sc">%&gt;%</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fdt</span>(<span class="at">format =</span> <span class="st">"EEEE, dd MMMM yyyy"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="st">"fr"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici le vecteur sans mise en forme</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "25/10/1985" "09/03/1988" "01092015"   "01032018"  </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici le vecteur mis en forme</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d_format</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "vendredi, 25 octobre 1985" "mercredi, 09 mars 1988"   
-[3] "mardi, 01 septembre 2015"  "jeudi, 01 mars 2018"      </code></pre>
-</div>
-</div>
-</section>
-<section id="utiliser-glue" class="slide level2 scrollable">
-<h2>Utiliser <code>glue()</code></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer une fonction avec glue()</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>famille <span class="ot">&lt;-</span> <span class="cf">function</span>(nom, date_naissance){</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glue</span>(<span class="st">"{nom} est né(e) le {date_naissance}."</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">famille</span>(noms, d_format)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Thierry est né(e) le vendredi, 25 octobre 1985.
-Vololona est né(e) le mercredi, 09 mars 1988.
-Logan est né(e) le mardi, 01 septembre 2015.
-Alexandra est né(e) le jeudi, 01 mars 2018.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using glue_data() and glue() inside mutate()</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tab_famille <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">nom =</span> noms, <span class="at">date_naissance =</span> <span class="fu">dmy</span>(d) <span class="sc">%&gt;%</span> <span class="fu">fdt</span>(<span class="at">format =</span> <span class="st">"EEEE"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="st">"fr"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">designation_sexe =</span> <span class="fu">if_else</span>(sexe <span class="sc">==</span> <span class="st">"M"</span>, <span class="st">"né"</span>, <span class="st">"née"</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Utiliser les colonnes dans un tableau et obtenir un vecteur en sortie avec glu_data()</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>tab_famille <span class="sc">%&gt;%</span> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glue_data</span>(<span class="st">"{nom} est {designation_sexe} un {date_naissance}"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Thierry est né un vendredi
-Vololona est née un mercredi
-Logan est né un mardi
-Alexandra est née un jeudi</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Garder le résultat dans une colonne</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tab_famille1 <span class="ot">&lt;-</span> tab_famille <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ensemble =</span> <span class="fu">glue</span>(<span class="st">"{nom} est né(e) un {date_naissance}"</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>tab_famille1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(nom, ensemble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-  nom       ensemble                      
-  &lt;chr&gt;     &lt;glue&gt;                        
-1 Thierry   Thierry est né(e) un vendredi 
-2 Vololona  Vololona est né(e) un mercredi
-3 Logan     Logan est né(e) un mardi      
-4 Alexandra Alexandra est né(e) un jeudi  </code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="visualisation-de-données" class="title-slide slide level1 center">
-<h1>Visualisation de données</h1>
-
-</section>
-<section id="visualisation-avec-ggplot2" class="slide level2 scrollable">
-<h2>Visualisation avec <code>ggplot2</code></h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
- $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
- $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
- $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
- $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
- $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
- $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
- $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
-</div>
-<div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-6-2.png" width="960"></p>
-</div>
-<div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-6-3.png" width="960"></p>
-</div>
-</div>
-</section>
-<section id="cartographie-dans-r" class="slide level2">
-<h2>Cartographie dans R</h2>
-<div class="cell">
-
-</div>
-</section>
-<section id="ressources" class="slide level2">
-<h2>Ressources</h2>
-<ul>
-<li><p><a href="https://geocompr.robinlovelace.net/"><strong>“Geocomputation with R”</strong></a><br>
-— Garrett Grolemund &amp; Hadley Wickham</p></li>
-<li><p><a href="https://adv-r.hadley.nz/"><strong>“Advanced R”</strong></a><br>
-— Hadley Wickham</p></li>
-</ul>
-</section></section>
 <section>
 <section id="modélisation-dans-r" class="title-slide slide level1 center">
 <h1>Modélisation dans R</h1>
 
 </section>
-<section id="régression-linéaire" class="slide level2">
-<h2>Régression linéaire</h2>
+<section id="modélisation-non-linéaire" class="slide level2 scrollable">
+<h2>Modélisation “non linéaire”</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Family: gaussian 
+Link function: identity 
 
-<img src="img/logo.jpg" class="slide-logo r-stretch"><div class="footer footer-default">
+Formula:
+temperature ~ s(year)
+
+Parametric coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.129927   0.007462  -17.41   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F p-value    
+s(year) 7.726  8.586 178.7  &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.899   Deviance explained = 90.4%
+-REML = -137.21  Scale est. = 0.0096342  n = 173</code></pre>
+</div>
+</div>
+<p><img src="img/logo.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
 
 </div>
 </section></section>
