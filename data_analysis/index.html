@@ -23,6 +23,7 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+<<<<<<< HEAD
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -87,6 +88,8 @@
     code span.va { color: #aa5d00; } /* Variable */
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
+=======
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -400,28 +403,35 @@
 </section>
 <section id="transformer-des-données" class="slide level2 scrollable">
 <h2>Transformer des données</h2>
+<<<<<<< HEAD
 </section></section>
 <section>
 <section id="introduction-à-lextension-data.table" class="title-slide slide level1 center">
 <h1>Introduction à l’extension <code>data.table</code></h1>
 
+=======
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 </section>
 <section id="utilisation-de-data.table" class="slide level2">
 <h2>utilisation de <code>data.table</code></h2>
 <div class="cell">
 
 </div>
+<<<<<<< HEAD
 </section></section>
 <section>
 <section id="introduction-à-lextension-collapse" class="title-slide slide level1 center">
 <h1>Introduction à l’extension <code>collapse</code></h1>
 
+=======
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 </section>
 <section id="utilisation-de-collapse" class="slide level2">
 <h2>utilisation de <code>collapse</code></h2>
 <div class="cell">
 
 </div>
+<<<<<<< HEAD
 </section></section>
 <section>
 <section id="formatter" class="title-slide slide level1 center">
@@ -473,12 +483,19 @@
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">famille</span>(noms, d_format)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+=======
+</section>
+<section id="formatter-les-dates-avec-bigd" class="slide level2">
+<h2>Formatter les dates avec <code>bigD</code></h2>
+<div class="cell">
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 <div class="cell-output cell-output-stdout">
 <pre><code>Thierry est né(e) le vendredi, 25 octobre 1985.
 Vololona est né(e) le mercredi, 09 mars 1988.
 Logan est né(e) le mardi, 01 septembre 2015.
 Alexandra est né(e) le jeudi, 01 mars 2018.</code></pre>
 </div>
+<<<<<<< HEAD
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utiliser glue() dans un tableau</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tab_famille <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">nom =</span> noms, <span class="at">date_naissance =</span> d_format, <span class="at">sexe =</span> sexe ) <span class="sc">%&gt;%</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">designation_sexe =</span> <span class="fu">if_else</span>(sexe <span class="sc">==</span> <span class="st">"M"</span>, <span class="st">"né"</span>, <span class="st">"née"</span>))</span>
@@ -505,6 +522,22 @@ Alexandra est née le jeudi, 01 mars 2018</code></pre>
 2 Vololona  mercredi, 09 mars 1988    F     née              Vololona est née l…
 3 Logan     mardi, 01 septembre 2015  M     né               Logan est né le ma…
 4 Alexandra jeudi, 01 mars 2018       F     née              Alexandra est née …</code></pre>
+=======
+<div class="cell-output cell-output-stdout">
+<pre><code>Thierry est né(e) le vendredi
+Vololona est né(e) le mercredi
+Logan est né(e) le mardi
+Alexandra est né(e) le jeudi</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  nom       date_naissance ensemble                      
+  &lt;chr&gt;     &lt;chr&gt;          &lt;glue&gt;                        
+1 Thierry   vendredi       Thierry est né(e) un vendredi 
+2 Vololona  mercredi       Vololona est né(e) un mercredi
+3 Logan     mardi          Logan est né(e) un mardi      
+4 Alexandra jeudi          Alexandra est né(e) un jeudi  </code></pre>
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 </div>
 </div>
 </section></section>
@@ -513,6 +546,34 @@ Alexandra est née le jeudi, 01 mars 2018</code></pre>
 <h1>Visualisation de données</h1>
 
 </section>
+<<<<<<< HEAD
+=======
+<section id="visualisation-avec-ggplot2" class="slide level2 scrollable">
+<h2>Visualisation avec <code>ggplot2</code></h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
+ $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
+ $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
+ $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
+ $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
+ $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
+ $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</div>
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-5-2.png" width="960"></p>
+</div>
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-5-3.png" width="960"></p>
+</div>
+</div>
+</section>
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 <section id="cartographie-dans-r" class="slide level2">
 <h2>Cartographie dans R</h2>
 <div class="cell">
@@ -527,6 +588,7 @@ Alexandra est née le jeudi, 01 mars 2018</code></pre>
 <li><p><a href="https://adv-r.hadley.nz/"><strong>“Advanced R”</strong></a><br>
 — Hadley Wickham</p></li>
 </ul>
+<<<<<<< HEAD
 </section></section>
 <section>
 <section id="modélisation-dans-r" class="title-slide slide level1 center">
@@ -535,6 +597,8 @@ Alexandra est née le jeudi, 01 mars 2018</code></pre>
 </section>
 <section id="régression-linéaire" class="slide level2">
 <h2>Régression linéaire</h2>
+=======
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 
 <img src="img/logo.jpg" class="slide-logo r-stretch"><div class="footer footer-default">
 

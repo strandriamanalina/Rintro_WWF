@@ -20,15 +20,22 @@ format:
 ## Tableau tidy ?
 
 ```{r}
+<<<<<<< HEAD
 library(tidyverse)
+=======
+#|echo: true
+
+
+# Using tidyverse
+
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 
 
 ```
 
-
-
 ## Transformer des données {.scrollable}
 
+<<<<<<< HEAD
 
 
 # Introduction à l'extension `data.table`
@@ -37,32 +44,48 @@ library(tidyverse)
 ## utilisation de `data.table`
 
 ```{r}
+=======
+## utilisation de `data.table`
+
+```{r}
+#|echo: true
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 
 # Installer et charger l'extension
-library(data.table)
+
 
 
 ```
 
+<<<<<<< HEAD
 
 
 # Introduction à l'extension `collapse`
 
+=======
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 ## utilisation de `collapse`
 
-
 ```{r}
+<<<<<<< HEAD
+=======
+#|echo: true
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 
 # Installer et charger l'extension
-library(collapse)
+
 
 
 
 ```
 
+<<<<<<< HEAD
 # Formatter
 
 ## Formater les tableaux avec `gt()`
+=======
+## Formatter les dates avec `bigD`
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 
 ```{r}
 #| echo: true
@@ -83,6 +106,7 @@ library(gt)
 #| echo: true
 
 # Installer et charger l'extension "bigD"
+library(tidyverse)
 library(lubridate)
 library(glue)
 library(bigD)
@@ -115,9 +139,15 @@ famille <- function(nom, date_naissance){
 
 famille(noms, d_format)
 
+<<<<<<< HEAD
 # Utiliser glue() dans un tableau
 tab_famille <- tibble(nom = noms, date_naissance = d_format, sexe = sexe ) %>% 
   mutate(designation_sexe = if_else(sexe == "M", "né", "née"))
+=======
+# using glue_data() and glue() inside mutate()
+tab_famille <- tibble(nom = noms, date_naissance = dmy(d) %>% fdt(format = "EEEE",
+  locale = "fr"))
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 
 # Utiliser les colonnes dans un tableau et obtenir un vecteur en sortie avec glu_data()
 tab_famille %>% 
@@ -125,15 +155,58 @@ tab_famille %>%
 
 # Garder le résultat dans une colonne
 tab_famille1 <- tab_famille %>% 
+<<<<<<< HEAD
   mutate(ensemble = glue("{nom} est {designation_sexe} le {date_naissance}"))
+=======
+  mutate(ensemble = glue("{nom} est né(e) un {date_naissance}"))
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 
 tab_famille1 %>% select(nom, ensemble)
 
 ```
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
 # Visualisation de données
 
+## Visualisation avec `ggplot2` {.scrollable}
+
+```{r}
+#|echo: true
+library(palmerpenguins)
+
+# Le jeu de données "penguins" comprend :
+str(penguins)
+
+# Simple visualisation
+theme_set(theme_light())
+
+penguins %>%
+  ggplot(aes(x = bill_length_mm, fill = species)) +
+  geom_histogram(
+    bins = 30,
+    color = "white",
+    alpha = 0.9
+  )
+
+# Density
+penguins %>%
+  ggplot(aes(x = bill_length_mm, fill = species)) +
+  geom_density()
+
+
+# Approximation par rapport à la distribution normale
+
+penguins %>%
+  ggplot(aes(sample = bill_length_mm)) +
+  stat_qq_line(color = "#00026b") + 
+  geom_qq(color = "gray20")
+
+# hslcolorpicker
+
+```
 
 ## Cartographie dans R
 
@@ -142,7 +215,6 @@ tab_famille1 %>% select(nom, ensemble)
 
 ```
 
-
 ## Ressources
 
 -   [**"Geocomputation with R"**](https://geocompr.robinlovelace.net/)\
@@ -150,9 +222,12 @@ tab_famille1 %>% select(nom, ensemble)
 
 -   [**"Advanced R"**](https://adv-r.hadley.nz/)\
     --- Hadley Wickham
+<<<<<<< HEAD
 
 # Modélisation dans R
 
 ## Régression linéaire
 
 
+=======
+>>>>>>> ff654eade460a69905a75e0e008af34cd004c3b6
