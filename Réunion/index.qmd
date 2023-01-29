@@ -1,0 +1,521 @@
+---
+title: ""
+author: "Randriamanalina Bevalamanana Solo Thierry"
+format: 
+  revealjs:
+    logo: logo.jpg 
+    slide-number: c
+    incremental: false
+    theme: style.scss
+    transition: fade
+    height: 900
+    width: 1600
+    fontcolor: "#262d36"
+    highlight-style: a11y
+    code-line-numbers: false
+---
+
+# Introduction
+
+## C'est quoi R ?
+
+::: incremental
+-   R est un langage de programmation statistique : dispose des outils de traitement et de visualisation
+
+-   R peut être utilisé pour **toutes** les étapes d'une analyse de données
+
+-   R est extensible : possibilité de créer des outils pour réaliser des tâches spécifiques et de partager aux autres utilisateurs
+:::
+
+## Pourquoi utiliser R ? {.scrollable}
+
+::: incremental
+1.  R est gratuit
+
+2.  Il existe des milliers d'extensions
+
+3.  R permet la réplication des analyses :
+
+-   Certains traitement sur Excel doivent être fait manuellement et certaines altérations des données sont irréversibles
+-   Le code peut être réutilisé en changeant la donnée source
+-   Il est possible de réaliser la rédaction d'un document et les analyses dans un même environnement
+
+4.  Facilite le partage et la publication :
+
+-   Il est possible d'exporter dans divers formats facilement : livre , présentation, pdf, doc, etc.
+:::
+
+## Récupérer des données automatiquement avec R {.scrollable}
+
+-   On va récupérer la liste des membres du gouvernement actuel de manière automatisée (sans expliquer le code)
+
+```{r}
+#| echo: true
+
+library(rvest)
+library(tidyverse)
+url <- "https://fr.wikipedia.org/wiki/Gouvernement_Ntsay"
+paragraphs <- read_html(url) %>% html_nodes("li") %>% html_text()
+data <- paragraphs[str_detect(paragraphs, "Ministre|Vice-ministre|Secrétaire")] %>% 
+  tail(25) %>% 
+  trimws(which = "both") %>% 
+  as_tibble() %>% 
+  separate(value, into = c("poste", "nom"), sep = ":") %>% 
+  mutate(poste = str_trim(poste, side = "both"),
+         nom = str_trim(nom, side = "both"))
+
+str(data) 
+
+```
+
+## Visualisations animées {.scrollable}
+
+[![Gif créé par Pat Schloss](img/monthly_anomaly.gif)](https://riffomonas.org/code_club/2022-06-27-monthly-anomaly)
+
+## `RStudio` est un `IDE`
+
+![](img/rstudio_pane_layout.png)
+
+## Visualisations
+
+![](img/viz1.png)
+
+## Génération de rapports automatique
+
+Il est possible de générer des rapports de manière automatique et de les partager en ligne. Voici un exemple : <https://bcmada.netlify.app/presentations/ambatomainty>
+
+## Outil pour microservice
+
+J'ai créé un petit outil pour `BCMada` qui permet aux partenaires et aux non techniciens d'estimer le prix des matériels solaires et avoir des détails des commandes pour un village donné.
+
+<https://strandr.shinyapps.io/order_shiny/>
+
+## Tableau de bord interactif
+
+R permet d'élaborer des tableaux de bord interactifs. Voici la galerie qui montre des exemples d'applications `shiny` :
+
+<https://shiny.rstudio.com/gallery/#user-showcase>
+
+# utiliser R tout de suite ?
+
+## Utiliser R en ligne
+
+-   Aller sur le site suivant : <https://rstudio.cloud/>
+-   Pour utiliser une version en ligne de RStudio avec R déjà pré installé 
+
+![](img/rstudiocloud1.png)
+
+## Utiliser R en ligne
+
+![](img/rstudiocloud2.png)
+
+## Utiliser R en ligne
+
+![](img/rstudiocloud3.png)
+
+## Utiliser R en ligne
+
+![](img/rstudiocloud4.png)
+
+## Autres options pour utiliser R en ligne {.scrollable}
+
+-   Autres options pour utiliser R en ligne gratuitement :
+
+    1.  Sur le site Kaggle : <https://www.kaggle.com/>
+
+        ![](img/kaggle.png){width="515"}
+
+    2.  Sur le site de google Colab : <https://colab.to/r>
+
+        ![](img/colab.png){width="511"}
+
+## Installer R sur votre ordinateur
+
+-   Installer R : <https://cran.r-project.org/>
+-   Installer RStudio : <https://www.rstudio.com/>
+-   L'installation peut nécessiter d'avoir un accès **administrateur**
+
+![](img/project.png)
+
+## Quelques ressources utiles
+
+-   [**"R for Data Science"**](https://r4ds.had.co.nz/)\
+    --- Garrett Grolemund & Hadley Wickham
+
+-   [**"Advanced R"**](https://adv-r.hadley.nz/)\
+    --- Hadley Wickham
+
+-   [**"What They Forgot to Teach You About R"**](https://rstats.wtf/)\
+    --- Jenny Bryan & Jim Hester
+
+# Les fondamentaux de R
+
+## Affectation, le vecteur atomique
+
+```{r}
+#| echo: true
+age <- c(54, 25, 26, 30, 23)
+
+```
+
+-   Créer un vecteur qui contient l'âge de 5 personnes en utilisant la fonction `c()` (combine)
+-   **Assigner** l'âge à la variable `age`
+-   A faire : Calculer l'âge moyen du groupe en utilisant la fonction `mean()`
+-   Calculer l'âge médiane
+-   Faire la somme des âges contenus dans le vecteur **age**
+
+## Les types de données dans R
+
+-   Il y a 4 types de données dans R
+
+```{r}
+#| echo: true
+
+entier <- c(1L, 2L, 3L) #Integer
+numerique <- c(43, 7.5, 3.333333, 14, -Inf) #double (flottant)
+booleen <- c(TRUE, FALSE, T, F) #logical
+caractere <- c("Mariah", "Deborah", "Miora", "Tiana", "5") #character
+
+```
+
+## Conversion de type de vecteur
+
+-   Un vecteur atomique n'a qu'un seul **type** *ie* tous les éléments du vecteur doivent être du même type
+-   On utilisera la fonction `typeof()` ou `str()` pour connaître le type de vecteur
+
+```{r}
+#| echo: true
+
+typeof(numerique)
+typeof(caractere)
+str(entier)
+
+```
+
+## Conversion de type de vecteur
+
+-   Si on mélange différents types de données dans un vecteur atomique, R va faire une **conversion** (coercion en anglais)
+-   La conversion est dite **implicite** dans ce cas
+-   Le principe est que R convertira le vecteur dans le type le plus général : booléen \> Numérique \> Caractère
+
+```{r}
+#| echo: true
+
+test1 <- c(TRUE, 34, 1, FALSE)
+str(test1)
+
+test2 <- c("Oui", "Non", 4, 5)
+str(test2)
+
+```
+
+## Conversion de type de vecteur
+
+-   On peut aussi forcer R à convertir un vecteur vers un type donné en utilisant les fonctions : `as.numeric()` ou `as.logical()` ou `as.character()`
+-   Dans ce cas R montrera une notification (Warning)
+-   Certaines valeurs sont converties en `NA` (Valeur manquante) lorsqu'il n'y a pas d'équivalent dans le type de donnée (par exemple lettre convertie en chiffre)
+
+```{r}
+#| echo: true
+
+test3 <- c(1,2,4, "Oui", "Rakoto")
+as.numeric(test3)
+
+```
+
+## Attributs
+
+::: incremental
+-   Ce sont des *"metadonnées"* *ie* des données à propos des données
+-   Par exemple : essayons de donner les noms correspondant aux ages que nous avons défini avec la fonction `names()`
+-   Pour *montrer* le contenu d'un vecteur, il suffit de taper son nom et d'exécuter le code. Ceci est valable pour tous les objets dans R.
+:::
+
+## Attributs
+
+-   Ce sont des *"metadonnées"* *ie* des données à propos des données
+-   Par exemple : essayons de donner les noms correspondant aux ages que nous avons défini avec la fonction `names()`
+-   Pour *montrer* le contenu d'un vecteur, il suffit de taper son nom et d'exécuter le code. Ceci est valable pour tous les objets dans R.
+
+```{r}
+#| echo: true
+noms <- c("Jao", "Paoly", "Koto", "Vao", "Jay") # ceci créer un vecteur de noms
+age <- c(54, 25, 26, 30, 23) # Voici le vecteur age créé un plus tôt
+names(age) <- noms # Ce code va assigner l'attribut nom au vecteur age grâce à la fonction names()
+age
+age1 <- setNames(age, noms) # Ce code fait la même chose que le code précédent
+age1
+
+```
+
+## Sélection dans un vecteur {.scrollable}
+
+On peut sélectionner les éléments d'un vecteur avec :
+
+```{r}
+#| echo: true
+
+# en utilisant [] avec la référence (le rang ou le nom)
+age[2] # renvoie le deuxième élément de age
+age["Paoly"] # Noter l'utilisation des guillemets
+
+
+# Il est possible de sélectionner plusieurs éléments à la fois en référençant un vecteur à l'aide de la fonction c() par exemple
+age[c(1:4)] # Sélectionne les éléments de 1 à 4
+age[c("Vao", "Koto")]
+
+
+# On peut sélectionner avec des arguments de type booléen
+age[c(TRUE, FALSE, TRUE, FALSE, TRUE)]
+
+
+# Ce qui permet le genre d'opération ci-après
+age > 50 # Teste quels éléments de age sont >50 et retourne un vecteur booléen
+age[age > 50] # Utilise le vecteur booléen pour retourner les éléments TRUE
+
+
+# Il est possible de combiner plusieurs vecteurs booléens
+age[age >= 30 & age < 50]
+
+```
+
+## Les autres types de structure de données
+
+Le vecteur atomique est la base
+
+Les principaux types de structure de données sont :
+
+-   liste
+-   data.frame
+-   matrices et arrays
+-   Dans le cadre de cette introduction, nous allons utiliser essentiellement le `data.frame`
+
+## Sélection dans un `data.frame` {.scrollable}
+
+-   Un `data.frame` est un tableau (2 dimensions : Colonnes x Lignes)
+-   Toutes les colonnes ont un même nombre de lignes
+-   Tous les éléments d'une colonne sont de même type
+
+```{r}
+#| echo: true
+
+# Créer un tableau 
+tableau <- data.frame(nom = noms, age = age, note = c(20, 17, 14, 7, 2), row.names = NULL)
+tableau
+
+
+# On peut utiliser [] pour sélectionner les éléments du tableau. Ici on a 2 dimensions
+tableau[, c(1,3)] # Sélectionne les éléments de la première et la troisième colonne
+
+tableau[c(1,2), ] # Sélectionne les deux premières ligne du tableau
+
+tableau[2] # Si on ne met pas de virgule, R assume qu'on sélectionne la colonne
+
+
+# On peut également utiliser [[]] ou $ pour retourner des éléments mais avec un format simplifié
+tableau[[2]] # Retourne les éléments de la deuxième colonne mais
+
+str(tableau[[2]]) # C'est un vecteur atomique
+
+tableau$note # retourne la colonne avec le nom"note"
+
+str(tableau$note) # C'est un vecteur atomique
+
+```
+
+# Introduction au traitement des données avec le `tidyverse`
+
+## Installer quelques extensions essentielles
+
+-   Utiliser la fonction `install.packages("tidyverse")` pour installer l'extension `tidyverse` 
+-   Installer également l'extension `"here"`
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Dans la console, taper le code ci-après
+install.packages("tidyverse") #Noter l'utilisation des guillemets
+install.packages("here")
+
+
+```
+
+## Charger des extensions
+
+::: incremental
+-   Pour charger une extension, utiliser la fonction `library()`
+-   Dans le code `source`, entrer et exécuter : `library(tidyverse)`
+-   L'extension `tidyverse` est un groupe d'extensions qui comprend :
+:::
+
+## Charger des extensions
+
+-   Pour charger une extension, utiliser la fonction `library()`
+-   Dans le code `source`, entrer et exécuter : `library(tidyverse)`
+-   Pour les détails, aller sur <https://www.tidyverse.org/packages/>
+-   L'extension `tidyverse` est un groupe d'extensions qui comprend :
+
+```{r}
+library(tidyverse)
+
+# Voici la liste des extensions compris dans tidyverse
+tidyverse_packages()
+
+
+```
+
+## Utilisation du **pipe** `%>%` ou `|>` {.scrollable}
+
+-   L'élément à gauche de `%>%` se retrouve en premier argument de la fonction à droite.
+-   f(x,y) s'écrit x `%>%` f(y)
+
+```{r}
+#| eval: false
+#| echo: true
+
+str(x) # est équivalent à
+x %>% str()
+
+```
+
+-   Pourquoi ? : Pour faciliter la lecture (par les humains) surtout lorsque les fonctions sont imbriquées ou que les opérations sont longues
+
+```{r}
+#| eval: false
+#| echo: true
+
+donnee %>% 
+  transformation1() %>% 
+  transformation2() %>% 
+  transformation3()
+
+# Au lieu de :
+transformation3(transformation2(transformation1(donnee)))
+
+```
+
+## Introduction à `dplyr`
+
+-   `dplyr` est une extension qui fait partie du `tidyverse`
+
+-   Les verbes de `dplyr` pour les colonnes : `select()`, `rename()`, `mutate()`, `relocate()`
+
+-   Les verbes de `dplyr` pour les lignes : `arrange()`, `filter()`
+
+-   Les verbes de `dplyr` pour transformer les données d'un tableau : `summarize()`/`summarise()`
+
+## Exercice 1 : traitement basique de données
+
+Les étapes :
+
+1.  Télécharger les données
+2.  Charger les données dans R
+3.  Utiliser les verbes de `dplyr` pour transformer les données
+
+## Exercice 2 : créer une visualisation avec `ggplot2`
+
+1.  Charger les données
+2.  Créer une visualisation avec `ggplot`
+
+```{r}
+
+library(janitor)
+library(plotly)
+library(readxl)
+library(echarts4r)
+library(RColorBrewer)
+
+country_code <- read_excel(here::here("Intro","data", "iso_3digit_alpha_country_codes.xls"), skip = 2) %>%
+  clean_names()
+code <- country_code[["code_value"]]
+
+# import data from the worldbank
+gdp <- read_csv(here::here("Intro", "data", "GDP_PCAP_PPP.csv"), skip = 3) %>%
+  select(-c(last_col(), last_col()))
+
+gdp_tidy <- gdp %>%
+  pivot_longer(
+    cols = `1960`:`2021`,
+    names_to = "year",
+    values_to = "GDP_PCAP"
+  ) %>%
+  clean_names() %>%
+  mutate(year = as.numeric(year)) %>%
+  filter(country_code %in% code)
+
+
+# Madagascar data > Data available  = 1990 to 2020
+country_list <- gdp_tidy %>%
+  select(country_name, country_code) %>%
+  distinct()
+
+country_selection <- c("SSA", "ZAF", "BN", "BFA", "BGD", "CMR", "COD", "COG", "MDG")
+
+comparison <- gdp_tidy %>%
+  filter(country_code %in% country_selection) %>%
+  filter(year >= 1990 & year < 2022)
+
+# theme_set(theme_light())
+g_comparison <- comparison %>%
+  ggplot(aes(x = year, y = gdp_pcap, colour = country_name)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  labs(
+    title = "GDP per Capita",
+    subtitle = "In US Dollar", # Add a subtitle
+    caption = "Source: World Bank", # Add a caption
+    x = "Year"
+  ) + # Rename the title of the x-axis
+  theme_classic() + # Usa a predefined theme of the graph
+  # theme() changes further features of a graph.
+  theme(axis.title.y = element_blank())
+
+g_comparison
+
+```
+
+
+## Exercice 3 : créer une visualisation interactive avec `echarts4r`
+
+
+```{r}
+# Sélection du bottom 10
+country_selection3 <- gdp_tidy %>% 
+  filter(year == 2020) %>%
+  filter(!is.na(gdp_pcap)) %>% 
+  arrange(gdp_pcap) %>% 
+  head(10) %>% 
+  select(country_code) %>% 
+  unlist()
+
+my_colors <- brewer.pal(length(country_selection3), "Dark2")
+
+gdp_tidy %>%
+  filter(country_code %in% country_selection3) %>%
+  filter(year >= 1990 & year < 2022) %>% 
+  select(country_name, year, gdp_pcap) %>%
+  mutate(year = as.Date(paste(year, 1, 1, sep = "-"))) %>%
+  group_by(country_name) %>%
+  e_charts(x = year) %>%
+  e_line(serie = gdp_pcap) %>%
+  e_tooltip(trigger = "axis") %>%
+  e_title(
+    text = "GDP Per Capita (PPP)",
+    subtext = "source : World Bank Open Data",
+    sublink = "https://data.worldbank.org/"
+  ) %>%
+  e_x_axis(year, axisPointer = list(show = TRUE)) %>%
+  e_axis_labels(x = "year", y = "") %>%
+  e_y_axis(formatter = e_axis_formatter("currency", currency = "USD")) %>%
+  e_color(my_colors) %>%
+  e_grid(right = "15%") %>%
+  e_legend(
+    orient = "vertical",
+    right = "5", top = "15%",
+    selector = TRUE
+  )
+
+
+
+```

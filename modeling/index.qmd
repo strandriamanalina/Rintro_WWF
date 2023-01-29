@@ -17,12 +17,41 @@ format:
 
 # Modélisation dans R
 
-## Modélisation "non linéaire" {.scrollable}
+## Modélisation linéaire  {.scrollable}
 
 ```{r}
 #|echo: true
 
 library(tidyverse)
+
+set.seed(123456789)
+N <- 100
+# Set N to 100, to represent the number of observations.
+a <- 2
+b <- 3 # model parameters of interest
+# Note the use of <- to mean "assign".
+x <- runif(N)
+# create a vector where the observed characteristic, x,
+# is drawn from a uniform distribution.
+u <- rnorm(N)
+# create a vector where the unobserved characteristic,
+# u is drawn from a standard normal distribution.
+y <- a + b*x + u # create a vector y
+
+mean(y[x > 0.95]) - mean(y[x < 0.05])
+
+plot(x, y) # creates a simple plot
+abline(a = 2, b = 3) # adds a linear function to the plot.
+
+```
+
+
+
+## Modélisation "non linéaire" {.scrollable}
+
+```{r}
+#|echo: true
+
 library(mgcv)
 # téléchargement des données : variations moyenne des températures annuelles pour l'hémisphère Sud 
 lien <- "https://www.metoffice.gov.uk/hadobs/hadcrut5/data/current/analysis/diagnostics/HadCRUT.5.0.1.0.analysis.summary_series.southern_hemisphere.annual.csv"
