@@ -1,0 +1,76 @@
+---
+title: "Modélisation"
+author: "Randriamanalina Bevalamanana Solo Thierry"
+format: 
+  revealjs:
+    logo: img/logo.jpg 
+    slide-number: c
+    incremental: false
+    theme: style.scss
+    transition: fade
+    height: 900
+    width: 1600
+    fontcolor: "#262d36"
+    highlight-style: a11y
+    code-line-numbers: false
+---
+
+# Modélisation dans R
+
+## Modélisation linéaire  {.scrollable}
+
+```{r}
+#|echo: true
+
+library(tidyverse)
+
+set.seed(123456789)
+N <- 100
+# Set N to 100, to represent the number of observations.
+a <- 2
+b <- 3 # model parameters of interest
+# Note the use of <- to mean "assign".
+x <- runif(N)
+# create a vector where the observed characteristic, x,
+# is drawn from a uniform distribution.
+u <- rnorm(N)
+# create a vector where the unobserved characteristic,
+# u is drawn from a standard normal distribution.
+y <- a + b*x + u # create a vector y
+
+mean(y[x > 0.95]) - mean(y[x < 0.05])
+
+plot(x, y) # creates a simple plot
+abline(a = 2, b = 3) # adds a linear function to the plot.
+
+```
+
+
+
+## Modélisation "non linéaire" {.scrollable}
+
+```{r}
+#|echo: true
+
+library(mgcv)
+# téléchargement des données : variations moyenne des températures annuelles pour l'hémisphère Sud 
+lien <- "https://www.metoffice.gov.uk/hadobs/hadcrut5/data/current/analysis/diagnostics/HadCRUT.5.0.1.0.analysis.summary_series.southern_hemisphere.annual.csv"
+
+# download.file(url = lien, destfile = here::here("modeling", "data", "HadCRUT5.csv"))
+
+gtemp <- read_csv(here::here("modeling", "data", "HadCRUT5.csv")) %>% 
+  set_names(c("year", "temperature", "lconfidence", "uconfidence"))
+
+theme_set(theme_light())
+
+gtemp %>% 
+  ggplot(aes(x = year, y = temperature)) +
+  geom_point() +
+  geom_smooth(method = "gam")
+
+m <- gam(temperature ~ s(year), data = gtemp, method = "REML")
+
+summary(m)
+
+```
+
